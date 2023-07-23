@@ -1,38 +1,27 @@
-while(True):
-    s = input()
-    answer = "yes"
-    if s == ".":
-        break
+while True :
+    a = input()
     stack = []
-    for i in range(len(s)):
-        if s[i] == " ":
-            continue
-        elif s[i] == "(" or s[i] == "[":
-            stack.append(s[i])
-            continue
-        elif s[i] == ")":
-            if len(stack) == 0:
-                answer = "no" 
-                break
-            elif stack[-1] == "(":
+
+    if a == "." :
+        break
+
+    for i in a :
+        if i == '[' or i == '(' :
+            stack.append(i)
+        elif i == ']' :
+            if len(stack) != 0 and stack[-1] == '[' :
                 stack.pop()
-                continue
-            else:
-                answer = "no" 
+            else : 
+                stack.append(']')
                 break
-        elif s[i] == "]":
-            if len(stack) == 0:
-                answer = "no"
-                break
-            elif stack[-1] == "[":
+        elif i == ')' :
+            if len(stack) != 0 and stack[-1] == '(' :
                 stack.pop()
-                continue
             else :
-                answer = "no"
-                break    
-    if len(stack)==0 and answer == "yes":
-        print("yes")
-    else:
-        print("no")
-    
+                stack.append(')')
+                break
+    if len(stack) == 0 :
+        print('yes')
+    else :
+        print('no')
         
