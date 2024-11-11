@@ -1,12 +1,14 @@
-x = int(input())
-memo = [1e9] * 1000010
+n = int(input())
 
-memo[1] = 0
-for i in range(1, x+1):
-    if i*3 <= x:
-        memo[i*3] = min(memo[i*3], memo[i]+1)
-    if i*2 <= x:
-        memo[i*2] = min(memo[i*2], memo[i] + 1)
-    memo[i+1] = min(memo[i+1], memo[i] + 1)
+dp = [0] * 1000001
 
-print(memo[x])
+for i in range(2, n+1):
+    dp[i] = dp[i-1] + 1
+    
+    if i % 2 == 0:
+        dp[i] = min(dp[i], dp[i//2] + 1)
+    
+    if i % 3 == 0:
+        dp[i] = min(dp[i], dp[i//3] + 1)
+        
+print(dp[n])
