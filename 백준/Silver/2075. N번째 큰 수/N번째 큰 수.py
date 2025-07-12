@@ -2,15 +2,19 @@ import sys, heapq
 
 input = sys.stdin.readline
 n = int(input())
-q = []
+
+heap = []
+
 for i in range(n):
-	num_list = list(map(int, input().split()))
-	if not q:
-		for num in num_list:
-			heapq.heappush(q, num) 
-	else:
-		for num in num_list: 
-			if q[0] < num: 
-				heapq.heappush(q, num) 
-				heapq.heappop(q) 
-print(q[0])
+    arr = list(map(int, input().split()))
+    if not heap:
+        for item in arr:
+            heapq.heappush(heap, item)
+    else:
+        for item in arr:
+            if heap[0] < item:
+                heapq.heappush(heap, item)
+                heapq.heappop(heap)
+                
+    
+print(heap[0])
